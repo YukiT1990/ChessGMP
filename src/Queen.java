@@ -1,8 +1,9 @@
 public class Queen extends Piece {
 
+  private static final int VALUE = 9;
 
-  public Queen(int value, boolean isWhite, Position position) {
-    super(value, isWhite, position);
+  public Queen(boolean isWhite, Position position) {
+    super(VALUE, isWhite, position);
   }
 
   @Override

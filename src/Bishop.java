@@ -1,8 +1,9 @@
 public class Bishop extends Piece {
 
+  private static final int VALUE = 3;
 
-  public Bishop(int value, boolean isWhite, Position position) {
-    super(value, isWhite, position);
+  public Bishop(boolean isWhite, Position position) {
+    super(VALUE, isWhite, position);
   }
 
   @Override

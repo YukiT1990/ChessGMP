@@ -12,43 +12,43 @@ public class Game {
 
     Game game = new Game();
 
-    Pawn pw1 = new Pawn(1, true, new Position(1, 0), false);
-    Pawn pw2 = new Pawn(1, true, new Position(1, 1), false);
-    Pawn pw3 = new Pawn(1, true, new Position(1, 2), false);
-    Pawn pw4 = new Pawn(1, true, new Position(1, 3), false);
-    Pawn pw5 = new Pawn(1, true, new Position(1, 4), false);
-    Pawn pw6 = new Pawn(1, true, new Position(1, 5), false);
-    Pawn pw7 = new Pawn(1, true, new Position(1, 6), false);
-    Pawn pw8 = new Pawn(1, true, new Position(1, 7), false);
-    Pawn pb1 = new Pawn(1, false, new Position(6, 0), false);
-    Pawn pb2 = new Pawn(1, false, new Position(6, 1), false);
-    Pawn pb3 = new Pawn(1, false, new Position(6, 2), false);
-    Pawn pb4 = new Pawn(1, false, new Position(6, 3), false);
-    Pawn pb5 = new Pawn(1, false, new Position(6, 4), false);
-    Pawn pb6 = new Pawn(1, false, new Position(6, 5), false);
-    Pawn pb7 = new Pawn(1, false, new Position(6, 6), false);
-    Pawn pb8 = new Pawn(1, false, new Position(6, 7), false);
+    Pawn pw1 = new Pawn(true, new Position(1, 0), false);
+    Pawn pw2 = new Pawn(true, new Position(1, 1), false);
+    Pawn pw3 = new Pawn(true, new Position(1, 2), false);
+    Pawn pw4 = new Pawn(true, new Position(1, 3), false);
+    Pawn pw5 = new Pawn(true, new Position(1, 4), false);
+    Pawn pw6 = new Pawn(true, new Position(1, 5), false);
+    Pawn pw7 = new Pawn(true, new Position(1, 6), false);
+    Pawn pw8 = new Pawn(true, new Position(1, 7), false);
+    Pawn pb1 = new Pawn(false, new Position(6, 0), false);
+    Pawn pb2 = new Pawn(false, new Position(6, 1), false);
+    Pawn pb3 = new Pawn(false, new Position(6, 2), false);
+    Pawn pb4 = new Pawn(false, new Position(6, 3), false);
+    Pawn pb5 = new Pawn(false, new Position(6, 4), false);
+    Pawn pb6 = new Pawn(false, new Position(6, 5), false);
+    Pawn pb7 = new Pawn(false, new Position(6, 6), false);
+    Pawn pb8 = new Pawn(false, new Position(6, 7), false);
 
-    King kw = new King(1000, true, new Position(0, 5));
-    King kb = new King(1000, false, new Position(7, 5));
+    King kw = new King(true, new Position(0, 5));
+    King kb = new King(false, new Position(7, 5));
 
-    Queen qw = new Queen(9, true, new Position(0, 3));
-    Queen qb = new Queen(9, false, new Position(7, 3));
+    Queen qw = new Queen(true, new Position(0, 3));
+    Queen qb = new Queen(false, new Position(7, 3));
 
-    Rook rw1 = new Rook(5, true, new Position(0, 0));
-    Rook rw2 = new Rook(5, true, new Position(0, 7));
-    Rook rb1 = new Rook(5, false, new Position(7, 0));
-    Rook rb2 = new Rook(5, false, new Position(7, 7));
+    Rook rw1 = new Rook(true, new Position(0, 0));
+    Rook rw2 = new Rook(true, new Position(0, 7));
+    Rook rb1 = new Rook(false, new Position(7, 0));
+    Rook rb2 = new Rook(false, new Position(7, 7));
 
-    Bishop bw1 = new Bishop(3, true, new Position(0, 2));
-    Bishop bw2 = new Bishop(3, true, new Position(0, 5));
-    Bishop bb1 = new Bishop(3, false, new Position(7, 2));
-    Bishop bb2 = new Bishop(3, false, new Position(7, 5));
+    Bishop bw1 = new Bishop(true, new Position(0, 2));
+    Bishop bw2 = new Bishop(true, new Position(0, 5));
+    Bishop bb1 = new Bishop(false, new Position(7, 2));
+    Bishop bb2 = new Bishop(false, new Position(7, 5));
 
-    Knight kw1 = new Knight(3, true, new Position(0, 1));
-    Knight kw2 = new Knight(3, true, new Position(0, 6));
-    Knight kb1 = new Knight(3, false, new Position(7, 1));
-    Knight kb2 = new Knight(3, false, new Position(7, 6));
+    Knight kw1 = new Knight(true, new Position(0, 1));
+    Knight kw2 = new Knight(true, new Position(0, 6));
+    Knight kb1 = new Knight(false, new Position(7, 1));
+    Knight kb2 = new Knight(false, new Position(7, 6));
 
     game.board[0][0] = rw1;
     game.board[0][1] = kw1;

@@ -2,9 +2,10 @@ public class Pawn extends Piece {
 
 
   private boolean promoted;
+  private static final int VALUE = 1;
 
-  public Pawn(int value, boolean isWhite, Position position, boolean promoted) {
-    super(value, isWhite, position);
+  public Pawn(boolean isWhite, Position position, boolean promoted) {
+    super(VALUE, isWhite, position);
     this.promoted = promoted;
   }
 

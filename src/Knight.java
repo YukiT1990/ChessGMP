@@ -1,8 +1,9 @@
 public class Knight extends Piece {
 
+  private static final int VALUE = 3;
 
-  public Knight(int value, boolean isWhite, Position position) {
-    super(value, isWhite, position);
+  public Knight(boolean isWhite, Position position) {
+    super(VALUE, isWhite, position);
   }
 
   @Override
