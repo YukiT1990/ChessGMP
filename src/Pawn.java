@@ -10,16 +10,22 @@ public class Pawn extends Piece {
   }
 
   @Override
-  void move() {
-    System.out.println("Forward 1");
+  void move(Position newPosition, Piece[][] board) {
+    if (isValidMove(newPosition)) {
+      board[position.getRow()][position.getCol()] = null;
+      this.position = newPosition;
+      board[newPosition.getRow()][newPosition.getCol()] = this;
+    } else {
+      System.out.println("Invalid move!");
+    }
   }
 
   @Override
   public String toString() {
     if (isWhite()) {
-      return "♟";
-    } else {
       return "♙";
+    } else {
+      return "♟";
     }
   }
 

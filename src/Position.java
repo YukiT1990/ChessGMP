@@ -15,6 +15,8 @@ public class Position {
     return row;
   }
 
-
-
+  @Override
+  public String toString() {
+    return ". ";
+  }
 }

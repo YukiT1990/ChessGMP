@@ -3,6 +3,7 @@ import java.util.Objects;
 public abstract class Piece {
 
   //♚♛♜♝♞♟♔♕♖♗♘♙
+
   private int value;
   private boolean isWhite;
   protected Position position;
@@ -37,7 +38,7 @@ public abstract class Piece {
     this.position = position;
   }
 
-  abstract void move();
+  abstract void move(Position newPosition, Piece[][] board);
 
   @Override
   public String toString() {

@@ -7,19 +7,23 @@ public class King extends Piece {
   }
 
   @Override
-  void move() {
+  void move(Position newPosition, Piece[][] board) {
     System.out.println("One square");
   }
 
   @Override
   public String toString() {
     if (isWhite()) {
-      return "♚";
-    } else {
       return "♔";
+    } else {
+      return "♚";
     }
   }
 
+  @Override
+  public boolean isValidMove(Position newPosition) {
+    return super.isValidMove(newPosition);
+  }
 }
 
 
