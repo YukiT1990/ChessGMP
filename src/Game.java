@@ -2,10 +2,8 @@ public class Game {
 
   private Piece[][] board;
 
-
   public Game() {
     board = new Piece[8][8];
-
   }
 
   public static void printBoard(Piece[][] board) {
@@ -98,7 +96,6 @@ public class Game {
     Position h7 = new Position(6, 7);
     Position h8 = new Position(7, 7);
 
-
     Pawn pw1 = new Pawn(true, a2,false);
     Pawn pw2 = new Pawn(true, b2,false);
     Pawn pw3 = new Pawn(true, c2,false);
@@ -166,19 +163,23 @@ public class Game {
     game.board[7][6] = kb2;
     game.board[7][7] = rb2;
 
+
+    // Testing pawn move
     printBoard(game.board);
 
-    pw1.move(a3, game.board);
-
+    pw1.move(a4, game.board);
+    System.out.println("a2 to a4");
     printBoard(game.board);
 
-    pb3.move(c5, game.board);
-
+    System.out.println("b7 to b5");
+    pb2.move(b5, game.board);
     printBoard(game.board);
 
-    game.board[1][5].move(f3, game.board);
+    System.out.println("a4 to b5 (capturing)");
 
+    pw1.move(b5, game.board);
     printBoard(game.board);
+
 
   }
 

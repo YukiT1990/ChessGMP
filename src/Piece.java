@@ -68,8 +68,9 @@ public abstract class Piece {
     return Objects.hash(position, isWhite, value);
   }
 
-  public boolean isValidMove(Position newPosition){
-    if (newPosition.getRow() > 0 && newPosition.getCol() > 0
+  public boolean isValidMove(Position newPosition, Piece[][] board){
+
+    if (newPosition.getRow() >= 0 && newPosition.getCol() >= 0
         && newPosition.getRow() < 8 && newPosition.getCol() < 8) {
       return true;
     } else {
