@@ -176,11 +176,34 @@ public class Game {
     printBoard(game.board);
 
     System.out.println("a4 to b5 (capturing)");
-
     pw1.move(b5, game.board);
     printBoard(game.board);
 
+    // Testing Knight move
+    System.out.println("b1 to f3");
+    kw2.move(f3, game.board);
+    printBoard(game.board);
 
+    System.out.println("f3 to h4");
+    kw2.move(h4, game.board);
+    printBoard(game.board);
+
+    System.out.println("h4 to g2 (invalid)");
+    kw2.move(g2, game.board);
+    printBoard(game.board);
+
+    System.out.println("g8 to f6");
+    kb2.move(f6, game.board);
+    printBoard(game.board);
+
+    kb2.move(d5, game.board);
+    printBoard(game.board);
+
+    kb2.move(e3, game.board);
+    printBoard(game.board);
+
+    kb2.move(f1, game.board);
+    printBoard(game.board);
   }
 
 }

@@ -39,63 +39,69 @@ public class Pawn extends Piece {
 
     final int PAWN_MOVE_1 = 1;
     final int PAWN_MOVE_2 = 2;
-    final int FIRST_WHITE = 1;
-    final int FIRST_BLACK = 6;
     int newColumn = newPosition.getCol();
     int newRow = newPosition.getRow();
     int column = position.getCol();
     int row = position.getRow();
+    boolean isFirstRowWhite = (row == 1);
+    boolean isFirstRowBlack = (row == 6);
+    boolean isValidWhitePawnAnyMove = (newRow == row + PAWN_MOVE_1 &&
+        board[newRow][newColumn] == null);
+    boolean isValidWhitePawnFirstMove = ((newRow == row + PAWN_MOVE_2 ||
+        newRow == row + PAWN_MOVE_1) & board[newRow][newColumn] == null);
+    boolean isValidWhitePawnMoveCapturing = (newRow == row + PAWN_MOVE_1 &&
+        newColumn == column + PAWN_MOVE_1) || (newRow == row + PAWN_MOVE_1 &&
+        newColumn == column - PAWN_MOVE_1);
+    boolean isValidBlackPawnAnyMove = (newRow == row - PAWN_MOVE_1 &&
+        board[newRow][newColumn] == null);
+    boolean isValidBlackPawnFirstMove = ((newRow == row - PAWN_MOVE_2 ||
+        newRow == row - PAWN_MOVE_1) && board[newRow][newColumn] == null);
 
+    boolean isValidBlackPawnMoveCapturing = (newRow == row - PAWN_MOVE_1 &&
+        newColumn == column + PAWN_MOVE_1) ||
+        (newRow == row - PAWN_MOVE_1 && newColumn == column - PAWN_MOVE_1);
 
     if (!super.isValidMove(newPosition, board)) {
       return false;
     }
 
+    if (this.isWhite()) {
 
-    if (isWhite()) {
-
-      // Checking move if the pawn is in the first position
-      if (row == FIRST_WHITE) {
-        if ((newRow == row + PAWN_MOVE_2 || newRow == row + PAWN_MOVE_1) &&
-            newColumn == column && board[newRow][newColumn] == null) {
+      if (isFirstRowWhite) {
+        if (isValidWhitePawnFirstMove) {
+          if (board[newRow][newColumn] != null) {
+            if (!board[newRow][newColumn].isWhite() && isValidWhitePawnMoveCapturing) {
+              return true;
+            }
+          }
           return true;
         }
-        // Checking the move if the pawn is not in the first position
-      } else if (newRow == row + PAWN_MOVE_1 &&
-          newColumn == column &&
-          board[newRow][newColumn] == null) {
-        return true;
-        // Checking if the Pawn is capturing another piece
-      } else if (!board[newRow][newColumn].isWhite() &&
-          (newColumn == column + PAWN_MOVE_1 &&
-              newRow == row + PAWN_MOVE_1) ||
-          (newColumn == column - PAWN_MOVE_1 &&
-              newRow == row + PAWN_MOVE_1)) {
-        return true;
-      }
-    } else {
-      // Checking move if the pawn is in the first position
-      if (row == FIRST_BLACK) {
-        if ((newRow == row - PAWN_MOVE_2 ||
-            newRow == row - PAWN_MOVE_1) &&
-            newColumn == column &&
-            board[newRow][newColumn] == null) {
+      } else if (isValidWhitePawnAnyMove || isValidWhitePawnMoveCapturing) {
+        if (board[newRow][newColumn] != null) {
+          if (!board[newRow][newColumn].isWhite()) {
+            return true;
+          }
+        }
           return true;
         }
-        // Checking the move if the pawn is not in the first position
-      } else if (newRow == row - PAWN_MOVE_1 &&
-          newColumn == column &&
-          board[newRow][newColumn] == null) {
-        return true;
-        // Checking if the Pawn is capturing another piece
-      } else if (board[newRow][newColumn].isWhite() &&
-          (newColumn == column + PAWN_MOVE_1 &&
-              newRow == row - PAWN_MOVE_1) ||
-          (newColumn == column - PAWN_MOVE_1 &&
-              newRow == row - PAWN_MOVE_1)) {
+      } else if (isFirstRowBlack) {
+      if (isValidBlackPawnFirstMove) {
+        if (board[newRow][newColumn] != null) {
+          if (board[newRow][newColumn].isWhite() && isValidBlackPawnMoveCapturing) {
+            return true;
+          }
+        }
         return true;
       }
+    } else if (isValidBlackPawnAnyMove || isValidBlackPawnMoveCapturing) {
+      if (board[newRow][newColumn] != null) {
+        if (board[newRow][newColumn].isWhite()) {
+          return true;
+        }
+      }
+      return true;
     }
+
     return false;
   }
 
