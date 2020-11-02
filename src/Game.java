@@ -165,45 +165,58 @@ public class Game {
 
 
     // Testing pawn move
-    printBoard(game.board);
+//    printBoard(game.board);
+//
+//    for (int row = 0; row < game.board.length; row++) {
+//      for (int col = 0; col < game.board[row].length; col++) {
+//        if (game.board[row][col] == null) {
+//          System.out.println("null");
+//        } else {
+//          System.out.println(game.board[row][col].position);
+//        }
+//      }
+//      System.out.println();
+//    }
+//
+    System.out.println("a1a5".length());
+    GameController.move(game.board, "a1a3");
 
-    pw1.move(a4, game.board);
-    System.out.println("a2 to a4");
-    printBoard(game.board);
 
-    System.out.println("b7 to b5");
-    pb2.move(b5, game.board);
-    printBoard(game.board);
+//    pw1.move(a4, game.board);
+//    System.out.println("a2 to a4");
+//    printBoard(game.board);
+//
+//    System.out.println("b7 to b5");
+//    pb2.move(b5, game.board);
+//    printBoard(game.board);
+//
+//    System.out.println("a4 to b5 (capturing)");
+//    pw1.move(b5, game.board);
+//    printBoard(game.board);
+//
+//    // Testing Knight move
+//    System.out.println("b1 to f3");
+//    kw2.move(f3, game.board);
+//    printBoard(game.board);
+//
+//    System.out.println("f3 to h4");
+//    kw2.move(h4, game.board);
+//    printBoard(game.board);
+//
+//    // Testing Bishop move
+//    System.out.println("b2 to b3");
+//    pw2.move(b3, game.board);
+//    printBoard(game.board);
+//
+//    System.out.println("c1 to a3");
+//    bw1.move(a3, game.board);
+//    printBoard(game.board);
+//
+//    System.out.println("a3 to e7");
+//    bw1.move(e7, game.board);
+//    printBoard(game.board);
 
-    System.out.println("a4 to b5 (capturing)");
-    pw1.move(b5, game.board);
-    printBoard(game.board);
 
-    // Testing Knight move
-    System.out.println("b1 to f3");
-    kw2.move(f3, game.board);
-    printBoard(game.board);
-
-    System.out.println("f3 to h4");
-    kw2.move(h4, game.board);
-    printBoard(game.board);
-
-    System.out.println("h4 to g2 (invalid)");
-    kw2.move(g2, game.board);
-    printBoard(game.board);
-
-    System.out.println("g8 to f6");
-    kb2.move(f6, game.board);
-    printBoard(game.board);
-
-    kb2.move(d5, game.board);
-    printBoard(game.board);
-
-    kb2.move(e3, game.board);
-    printBoard(game.board);
-
-    kb2.move(f1, game.board);
-    printBoard(game.board);
   }
 
 }

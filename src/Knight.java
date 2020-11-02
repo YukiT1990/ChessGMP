@@ -59,15 +59,13 @@ public class Knight extends Piece {
     if (this.isWhite()) {
       if (board[newRow][newColumn] == null && validKnightMove) {
         return true;
-      } else if (!board[newRow][newColumn].isWhite() && validKnightMove) {
-        return true;
-      }
+      } else
+        return !board[newRow][newColumn].isWhite() && validKnightMove;
     } else if (board[newRow][newColumn] == null && validKnightMove) {
       return true;
-    } else if (board[newRow][newColumn].isWhite() && validKnightMove) {
-      return true;
+    } else {
+      return board[newRow][newColumn].isWhite() && validKnightMove;
     }
-    return false;
   }
 
 }

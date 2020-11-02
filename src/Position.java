@@ -17,6 +17,6 @@ public class Position {
 
   @Override
   public String toString() {
-    return "Row: " + row + "Col: " + col;
+    return "Row: " + row + " " +  "Col: " + col;
   }
 }
