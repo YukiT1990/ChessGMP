@@ -41,31 +41,43 @@ public class Knight extends Piece {
     int column = position.getCol();
     int row = position.getRow();
 
-    if (!super.isValidMove(newPosition, board)) {
+    /**
+     * Yuki added here
+     */
+    // First call the parent's method to check for the board bounds
+    if(!super.isValidMove(position, board)){
+      return false;
+    }
+    // If we passed the first test then check for the specific knight movement
+    if(((Math.abs(newPosition.getCol() - this.position.getCol()) == 1) && (Math.abs(newPosition.getRow() - this.position.getRow()) == 2))
+            || ((Math.abs(newPosition.getRow() - this.position.getRow()) == 1) && (Math.abs(newPosition.getCol() - this.position.getCol()) == 2))){
+      return true;
+    }
+    else{
       return false;
     }
 
-    boolean validKnightMove = (
-        (newColumn == column + KNIGHT_MOVE_1 && newRow == row + KNIGHT_MOVE_2) ||
-        (newColumn == column + KNIGHT_MOVE_1 && newRow == row - KNIGHT_MOVE_2) ||
-        (newColumn == column + KNIGHT_MOVE_2 && newRow == row + KNIGHT_MOVE_1) ||
-        (newColumn == column + KNIGHT_MOVE_2 && newRow == row - KNIGHT_MOVE_1) ||
-        (newColumn == column - KNIGHT_MOVE_1 && newRow == row - KNIGHT_MOVE_2) ||
-        (newColumn == column - KNIGHT_MOVE_1 && newRow == row + KNIGHT_MOVE_2) ||
-        (newColumn == column - KNIGHT_MOVE_2 && newRow == row - KNIGHT_MOVE_1) ||
-        (newColumn == column - KNIGHT_MOVE_2 && newRow == row + KNIGHT_MOVE_1)
-    );
+//    boolean validKnightMove = (
+//        (newColumn == column + KNIGHT_MOVE_1 && newRow == row + KNIGHT_MOVE_2) ||
+//        (newColumn == column + KNIGHT_MOVE_1 && newRow == row - KNIGHT_MOVE_2) ||
+//        (newColumn == column + KNIGHT_MOVE_2 && newRow == row + KNIGHT_MOVE_1) ||
+//        (newColumn == column + KNIGHT_MOVE_2 && newRow == row - KNIGHT_MOVE_1) ||
+//        (newColumn == column - KNIGHT_MOVE_1 && newRow == row - KNIGHT_MOVE_2) ||
+//        (newColumn == column - KNIGHT_MOVE_1 && newRow == row + KNIGHT_MOVE_2) ||
+//        (newColumn == column - KNIGHT_MOVE_2 && newRow == row - KNIGHT_MOVE_1) ||
+//        (newColumn == column - KNIGHT_MOVE_2 && newRow == row + KNIGHT_MOVE_1)
+//    );
 
-    if (this.isWhite()) {
-      if (board[newRow][newColumn] == null && validKnightMove) {
-        return true;
-      } else
-        return !board[newRow][newColumn].isWhite() && validKnightMove;
-    } else if (board[newRow][newColumn] == null && validKnightMove) {
-      return true;
-    } else {
-      return board[newRow][newColumn].isWhite() && validKnightMove;
-    }
+//    if (this.isWhite()) {
+//      if (board[newRow][newColumn] == null && validKnightMove) {
+//        return true;
+//      } else
+//        return !board[newRow][newColumn].isWhite() && validKnightMove;
+//    } else if (board[newRow][newColumn] == null && validKnightMove) {
+//      return true;
+//    } else {
+//      return board[newRow][newColumn].isWhite() && validKnightMove;
+//    }
   }
 
 }

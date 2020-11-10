@@ -22,7 +22,22 @@ public class Queen extends Piece {
 
   @Override
   public boolean isValidMove(Position newPosition, Piece[][] board) {
-    return super.isValidMove(newPosition, board);
+    /**
+     * Yuki added here
+     */
+    // First call the parent's method to check for the board bounds
+    if(!super.isValidMove(position, board)){
+      return false;
+    }
+    // If we passed the first test then check for the specific queen movement
+    // move diagonally
+    if((Math.abs(newPosition.getCol() - this.position.getCol()) == Math.abs(newPosition.getRow() - this.position.getRow()))
+            // move in straight lines
+            || (newPosition.getCol() == this.position.getCol() || newPosition.getRow() == this.position.getRow())){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
 
