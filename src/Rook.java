@@ -22,6 +22,19 @@ public class Rook extends Piece {
 
   @Override
   public boolean isValidMove(Position newPosition, Piece[][] board) {
-    return super.isValidMove(newPosition, board);
+    /**
+     * Yuki added here
+     */
+    // First call the parent's method to check for the board bounds
+    if(!super.isValidMove(position, board)){
+      return false;
+    }
+    // If we passed the first test then check for the specific rook movement
+    if(newPosition.getCol() == this.position.getCol() || newPosition.getRow() == this.position.getRow()){
+      return true;
+    }else{
+      return false;
+    }
+
   }
 }
