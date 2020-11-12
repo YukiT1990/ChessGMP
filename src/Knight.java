@@ -34,13 +34,6 @@ public class Knight extends Piece {
   @Override
   public boolean isValidMove(Position newPosition, Piece[][] board) {
 
-    final int KNIGHT_MOVE_1 = 1;
-    final int KNIGHT_MOVE_2 = 2;
-    int newColumn = newPosition.getCol();
-    int newRow = newPosition.getRow();
-    int column = position.getCol();
-    int row = position.getRow();
-
     /**
      * Yuki added here
      */
@@ -49,6 +42,8 @@ public class Knight extends Piece {
       return false;
     }
     // If we passed the first test then check for the specific knight movement
+    // Knight can jump over other pieces
+    // so don't need to check whether there are other pieces in the way
     if(((Math.abs(newPosition.getCol() - this.position.getCol()) == 1) && (Math.abs(newPosition.getRow() - this.position.getRow()) == 2))
             || ((Math.abs(newPosition.getRow() - this.position.getRow()) == 1) && (Math.abs(newPosition.getCol() - this.position.getCol()) == 2))){
       return true;
@@ -56,28 +51,5 @@ public class Knight extends Piece {
     else{
       return false;
     }
-
-//    boolean validKnightMove = (
-//        (newColumn == column + KNIGHT_MOVE_1 && newRow == row + KNIGHT_MOVE_2) ||
-//        (newColumn == column + KNIGHT_MOVE_1 && newRow == row - KNIGHT_MOVE_2) ||
-//        (newColumn == column + KNIGHT_MOVE_2 && newRow == row + KNIGHT_MOVE_1) ||
-//        (newColumn == column + KNIGHT_MOVE_2 && newRow == row - KNIGHT_MOVE_1) ||
-//        (newColumn == column - KNIGHT_MOVE_1 && newRow == row - KNIGHT_MOVE_2) ||
-//        (newColumn == column - KNIGHT_MOVE_1 && newRow == row + KNIGHT_MOVE_2) ||
-//        (newColumn == column - KNIGHT_MOVE_2 && newRow == row - KNIGHT_MOVE_1) ||
-//        (newColumn == column - KNIGHT_MOVE_2 && newRow == row + KNIGHT_MOVE_1)
-//    );
-
-//    if (this.isWhite()) {
-//      if (board[newRow][newColumn] == null && validKnightMove) {
-//        return true;
-//      } else
-//        return !board[newRow][newColumn].isWhite() && validKnightMove;
-//    } else if (board[newRow][newColumn] == null && validKnightMove) {
-//      return true;
-//    } else {
-//      return board[newRow][newColumn].isWhite() && validKnightMove;
-//    }
   }
-
 }

@@ -70,10 +70,19 @@ public abstract class Piece {
 
   public boolean isValidMove(Position newPosition, Piece[][] board){
 
-    if (newPosition.getRow() >= 0 && newPosition.getCol() >= 0
-        && newPosition.getRow() < 8 && newPosition.getCol() < 8) {
-      return true;
-    } else {
+    if(newPosition.getRow() >= 0 && newPosition.getCol() >= 0
+        && newPosition.getRow() < 8 && newPosition.getCol() < 8){
+      // check whether newPosition is null
+      if(board[newPosition.getRow()][newPosition.getCol()] == null){
+        return true;
+      }
+      // check whether there is a piece of the same colour at the new position
+      if(board[newPosition.getRow()][newPosition.getCol()].isWhite == this.isWhite){
+        return false;
+      }else{
+        return true;
+      }
+    }else{
       return false;
     }
   }
