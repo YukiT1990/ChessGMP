@@ -34,13 +34,6 @@ public class Bishop extends Piece {
   @Override
   public boolean isValidMove(Position newPosition, Piece[][] board) {
 
-//    int newColumn = newPosition.getCol();
-//    int newRow = newPosition.getRow();
-//    int column = position.getCol();
-//    int row = position.getRow();
-//    int difRow = Math.abs(newRow - row);
-//    int difColumn = Math.abs(newColumn - column);
-
     /**
      * Yuki added here
      */
@@ -50,12 +43,59 @@ public class Bishop extends Piece {
     }
     // If we passed the first test then check for the specific bishop movement
     if(Math.abs(newPosition.getCol() - this.position.getCol()) == Math.abs(newPosition.getRow() - this.position.getRow())){
-      return true;
+      int positionsBetween = Math.abs(newPosition.getCol() - this.position.getCol()) - 1;
+      if(newPosition.getRow() > this.position.getRow() && newPosition.getCol() > this.position.getCol()) {
+        int r = this.position.getRow() + 1;
+        int c = this.position.getCol() + 1;
+        while(positionsBetween > 0) {
+          if(board[r][c] != null) {
+            return false;
+          }
+          r += 1;
+          c += 1;
+          positionsBetween -= 1;
+        }
+        return true;
+      }else if(newPosition.getRow() > this.position.getRow() && newPosition.getCol() <= this.position.getCol()){
+        int r = this.position.getRow() + 1;
+        int c = newPosition.getCol() + 1;
+        while(positionsBetween > 0) {
+          if(board[r][c] != null) {
+            return false;
+          }
+          r += 1;
+          c += 1;
+          positionsBetween -= 1;
+        }
+        return true;
+      }else if(newPosition.getRow() <= this.position.getRow() && newPosition.getCol() > this.position.getCol()){
+        int r = newPosition.getRow() + 1;
+        int c = this.position.getCol() + 1;
+        while(positionsBetween > 0) {
+          if(board[r][c] != null) {
+            return false;
+          }
+          r += 1;
+          c += 1;
+          positionsBetween -= 1;
+        }
+        return true;
+        // else -> newPosition.getRow() <= this.position.getRow() && newPosition.getCol() <= this.position.getCol()
+      }else{
+        int r = newPosition.getRow() + 1;
+        int c = newPosition.getCol() + 1;
+        while(positionsBetween > 0) {
+          if(board[r][c] != null) {
+            return false;
+          }
+          r += 1;
+          c += 1;
+          positionsBetween -= 1;
+        }
+        return true;
+      }
     }else{
       return false;
     }
-
-//    return (difRow == difColumn);
   }
-
 }

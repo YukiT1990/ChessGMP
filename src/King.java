@@ -30,6 +30,8 @@ public class King extends Piece {
       return false;
     }
     // If we passed the first test then check for the specific king movement
+    // King can only move one cell and there is no other pieces in the way between newPosition and current position
+    // so don't need to check whether there are other pieces in the way
     if((Math.abs(newPosition.getCol() - this.position.getCol()) <= 1) && (Math.abs(newPosition.getRow() - this.position.getRow()) <= 1)){
       return true;
     }else{

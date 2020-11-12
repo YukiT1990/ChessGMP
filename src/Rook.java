@@ -30,11 +30,40 @@ public class Rook extends Piece {
       return false;
     }
     // If we passed the first test then check for the specific rook movement
-    if(newPosition.getCol() == this.position.getCol() || newPosition.getRow() == this.position.getRow()){
+    if(newPosition.getCol() == this.position.getCol()) {
+      int minOfRow = 0;
+      int maxOfRow = 0;
+      if(newPosition.getRow() >= this.position.getRow()) {
+        minOfRow = this.position.getRow();
+        maxOfRow = newPosition.getRow();
+      }else{
+        minOfRow = newPosition.getRow();
+        maxOfRow = this.position.getRow();
+      }
+      for(int r = minOfRow + 1; r < maxOfRow; r++) {
+        if(board[r][this.position.getCol()] != null) {
+          return false;
+        }
+      }
+      return true;
+    }else if(newPosition.getRow() == this.position.getRow()){
+      int minOfCol = 0;
+      int maxOfCol = 0;
+      if(newPosition.getCol() >= this.position.getCol()) {
+        minOfCol = this.position.getCol();
+        maxOfCol = newPosition.getCol();
+      }else{
+        minOfCol = newPosition.getCol();
+        maxOfCol = this.position.getCol();
+      }
+      for(int c = minOfCol + 1; c < maxOfCol; c++) {
+        if(board[this.position.getRow()][c] != null) {
+          return false;
+        }
+      }
       return true;
     }else{
       return false;
     }
-
   }
 }
