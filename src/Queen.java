@@ -8,7 +8,19 @@ public class Queen extends Piece {
 
   @Override
   void move(Position newPosition, Piece[][] board) {
-    System.out.println("Like bishop and rook");
+
+    int newColumn = newPosition.getCol();
+    int newRow = newPosition.getRow();
+    int column = position.getCol();
+    int row = position.getRow();
+
+    if (isValidMove(newPosition, board)) {
+      board[row][column] = null;
+      this.position = newPosition;
+      board[newRow][newColumn] = this;
+    } else {
+      System.out.println("Invalid move!");
+    }
   }
 
   @Override

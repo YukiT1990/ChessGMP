@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Piece {
@@ -7,12 +8,16 @@ public abstract class Piece {
   private int value;
   private boolean isWhite;
   protected Position position;
+  String square;
 
   public Piece(int value, boolean isWhite, Position position) {
     this.value = value;
     this.isWhite = isWhite;
     this.position = position;
+    square = position.getUci();
   }
+
+
 
   public int getValue() {
     return value;
@@ -39,6 +44,16 @@ public abstract class Piece {
   }
 
   abstract void move(Position newPosition, Piece[][] board);
+
+  public ArrayList<String> possibleMoves(Position[] positions, Piece[][] board) {
+    ArrayList<String> possibleMoves =  new ArrayList<>();
+    for (Position p : positions) {
+      if (isValidMove(p, board)) {
+        possibleMoves.add(p.getUci());
+      }
+    }
+    return possibleMoves;
+  }
 
   @Override
   public String toString() {

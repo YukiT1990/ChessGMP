@@ -1,25 +1,30 @@
 public class GameController {
 
-  protected static boolean move(Piece[][] board, String input) {
-    char positionRow;
-    char positionColumn;
-    char newPositionRow;
-    char newPositionColumn;
 
-    if (input.length() != 4) {
-      System.out.println("Invalid move!");
-      return false;
-    } else {
-      positionRow = input.charAt(0);
-      positionColumn = input.charAt(1);
-      newPositionRow = input.charAt(2);
-      newPositionColumn = input.charAt(3);
-      System.out.println(positionRow + " " + positionColumn + " " + newPositionRow + " " + newPositionColumn);
-    }
-    return true;
-
+  protected static void help() {
+    System.out.println("* type 'help' for help");
+    System.out.println("* type 'board' to see the board again");
+    System.out.println("* type 'resign' to resign");
+    System.out.println("* type 'moves' to list all possible moves ");
+    System.out.println("* type a square (e.g. b1, e2) to list possible moves for that square");
+    System.out.println("* type UCI (e.g. b1c3, e7e8) to make a move\n");
   }
 
+  protected static void board() {
+    Game.printBoard();
+  }
 
+  protected static void resign(boolean isWhite) {
+    if (isWhite) {
+      System.out.println("\nWhite resigned. Black Won!");
+    } else {
+      System.out.println("\nBlack resigned. White Won!");
+    }
+    System.exit(0);
+  }
+
+  protected static void moves() {
+    Game.allPossibleMoves();
+  }
 
 }

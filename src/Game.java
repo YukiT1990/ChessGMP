@@ -1,35 +1,10 @@
 public class Game {
 
-  private Piece[][] board;
+  private static Piece[][] board;
+  private static Position[] positions;
 
   public Game() {
     board = new Piece[8][8];
-  }
-
-  public static void printBoard(Piece[][] board) {
-
-    final String empty = ". ";
-
-    for (int i = 7; i >= 0; i--) {
-      for (int j = 0; j < 8; j++) {
-        if (board[i][j] != null) {
-          System.out.print(board[i][j] + " ");
-        } else {
-          System.out.print(empty);
-        }
-        if (j == 7) {
-          System.out.print(" " + (i + 1));
-        }
-      }
-      System.out.println();
-    }
-    System.out.println("\na b c d e f g h\n");
-
-  }
-
-  public static void main(String[] args) {
-
-    Game game = new Game();
 
     Position a1 = new Position(0, 0);
     Position a2 = new Position(1, 0);
@@ -96,6 +71,15 @@ public class Game {
     Position h7 = new Position(6, 7);
     Position h8 = new Position(7, 7);
 
+    positions = new Position[]{a1, a2, a3, a4, a5, a6, a7, a8,
+        b1, b2, b3, b4, b5, b6, b7, b8,
+        c1, c2, c3, c4, c5, c6, c7, c8,
+        d1, d2, d3, d4, d5, d6, d7, d8,
+        e1, e2, e3, e4, e5, e6, e7, e8,
+        f1, f2, f3, f4, f5, f6, f7, f8,
+        g1, g2, g3, g4, g5, g6, g7, g8,
+        h1, h2, h3, h4, h5, h6, h7, h8};
+
     Pawn pw1 = new Pawn(true, a2,false);
     Pawn pw2 = new Pawn(true, b2,false);
     Pawn pw3 = new Pawn(true, c2,false);
@@ -128,95 +112,76 @@ public class Game {
     Knight kw2 = new Knight(true, g1);
     Knight kb1 = new Knight(false, b8);
     Knight kb2 = new Knight(false, g8);
+    board[0][0] = rw1;
+    board[0][1] = kw1;
+    board[0][2] = bw1;
+    board[0][3] = qw;
+    board[0][4] = kw;
+    board[0][5] = bw2;
+    board[0][6] = kw2;
+    board[0][7] = rw2;
+    board[1][0] = pw1;
+    board[1][1] = pw2;
+    board[1][2] = pw3;
+    board[1][3] = pw4;
+    board[1][4] = pw5;
+    board[1][5] = pw6;
+    board[1][6] = pw7;
+    board[1][7] = pw8;
+    board[6][0] = pb1;
+    board[6][1] = pb2;
+    board[6][2] = pb3;
+    board[6][3] = pb4;
+    board[6][4] = pb5;
+    board[6][5] = pb6;
+    board[6][6] = pb7;
+    board[6][7] = pb8;
+    board[7][0] = rb1;
+    board[7][1] = kb1;
+    board[7][2] = bb1;
+    board[7][3] = qb;
+    board[7][4] = kb;
+    board[7][5] = bb2;
+    board[7][6] = kb2;
+    board[7][7] = rb2;
 
-    game.board[0][0] = rw1;
-    game.board[0][1] = kw1;
-    game.board[0][2] = bw1;
-    game.board[0][3] = qw;
-    game.board[0][4] = kw;
-    game.board[0][5] = bw2;
-    game.board[0][6] = kw2;
-    game.board[0][7] = rw2;
-    game.board[1][0] = pw1;
-    game.board[1][1] = pw2;
-    game.board[1][2] = pw3;
-    game.board[1][3] = pw4;
-    game.board[1][4] = pw5;
-    game.board[1][5] = pw6;
-    game.board[1][6] = pw7;
-    game.board[1][7] = pw8;
+  }
 
-    game.board[6][0] = pb1;
-    game.board[6][1] = pb2;
-    game.board[6][2] = pb3;
-    game.board[6][3] = pb4;
-    game.board[6][4] = pb5;
-    game.board[6][5] = pb6;
-    game.board[6][6] = pb7;
-    game.board[6][7] = pb8;
-    game.board[7][0] = rb1;
-    game.board[7][1] = kb1;
-    game.board[7][2] = bb1;
-    game.board[7][3] = qb;
-    game.board[7][4] = kb;
-    game.board[7][5] = bb2;
-    game.board[7][6] = kb2;
-    game.board[7][7] = rb2;
+  public static void printBoard() {
 
+    final String empty = ". ";
 
-    // Testing pawn move
-//    printBoard(game.board);
-//
-//    for (int row = 0; row < game.board.length; row++) {
-//      for (int col = 0; col < game.board[row].length; col++) {
-//        if (game.board[row][col] == null) {
-//          System.out.println("null");
-//        } else {
-//          System.out.println(game.board[row][col].position);
-//        }
-//      }
-//      System.out.println();
-//    }
-//
-    System.out.println("a1a5".length());
-    GameController.move(game.board, "a1a3");
+    for (int i = 7; i >= 0; i--) {
+      for (int j = 0; j < 8; j++) {
+        if (board[i][j] != null) {
+          System.out.print(board[i][j] + " ");
+        } else {
+          System.out.print(empty);
+        }
+        if (j == 7) {
+          System.out.print(" " + (i + 1));
+        }
+      }
+      System.out.println();
+    }
+    System.out.println("\na b c d e f g h\n");
 
+  }
 
-//    pw1.move(a4, game.board);
-//    System.out.println("a2 to a4");
-//    printBoard(game.board);
-//
-//    System.out.println("b7 to b5");
-//    pb2.move(b5, game.board);
-//    printBoard(game.board);
-//
-//    System.out.println("a4 to b5 (capturing)");
-//    pw1.move(b5, game.board);
-//    printBoard(game.board);
-//
-//    // Testing Knight move
-//    System.out.println("b1 to f3");
-//    kw2.move(f3, game.board);
-//    printBoard(game.board);
-//
-//    System.out.println("f3 to h4");
-//    kw2.move(h4, game.board);
-//    printBoard(game.board);
-//
-//    // Testing Bishop move
-//    System.out.println("b2 to b3");
-//    pw2.move(b3, game.board);
-//    printBoard(game.board);
-//
-//    System.out.println("c1 to a3");
-//    bw1.move(a3, game.board);
-//    printBoard(game.board);
-//
-//    System.out.println("a3 to e7");
-//    bw1.move(e7, game.board);
-//    printBoard(game.board);
+  public static void allPossibleMoves() {
 
+    for (int i = 7; i >= 0; i--) {
+      for (int j = 0; j < 8; j++) {
+        if (board[i][j] != null) {
+          System.out.println(board[i][j].possibleMoves(positions, board));
+        }
+      }
+    }
+  }
 
+  static void gameStarter() {
+
+    Game game = new Game();
   }
 
 }
