@@ -39,13 +39,13 @@ public class Driver {
 
         default:
           if (userOptionInput.length() == 2) {
-            System.out.println("..");
+            Game.allPossibleMoves();
 
             break;
           }
 
           if (userOptionInput.length() == 4) {
-            System.out.println("*** implement UCI function ***");
+            Game.move(userOptionInput);
             isWhite = !isWhite;
             Game.printBoard();
             break;

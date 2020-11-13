@@ -145,7 +145,11 @@ public class Game {
     board[7][6] = kb2;
     board[7][7] = rb2;
 
+    pw1.move(a5, board);
+
   }
+
+
 
   public static void printBoard() {
 
@@ -168,15 +172,31 @@ public class Game {
 
   }
 
-  public static void allPossibleMoves() {
-
-    for (int i = 7; i >= 0; i--) {
-      for (int j = 0; j < 8; j++) {
-        if (board[i][j] != null) {
-          System.out.println(board[i][j].possibleMoves(positions, board));
+  public static void move(String move) {
+    Position newPosition = null;
+    for (Position p : positions) {
+      if (move.substring(2, 4).equals(p.getUci())) {
+        newPosition = p;
+      }
+    }
+    if (newPosition != null) {
+      for (int i = 7; i >= 0; i--) {
+        for (int j = 0; j < 8; j++) {
+          if (board[i][j] != null) {
+            if (board[i][j].getPosition().getUci().equals(move.substring(0, 2))) {
+              board[i][j].move(newPosition, board);
+            }
+          }
         }
       }
     }
+
+  }
+
+
+  public static void allPossibleMoves() {
+
+    System.out.println(board[1][1].possibleMoves(positions, board));
   }
 
   static void gameStarter() {
