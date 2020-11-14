@@ -1,3 +1,6 @@
+import com.sun.org.apache.xerces.internal.xs.StringList;
+import java.util.ArrayList;
+
 public class Game {
 
   private static Piece[][] board;
@@ -14,7 +17,7 @@ public class Game {
     Position a6 = new Position(5, 0);
     Position a7 = new Position(6, 0);
     Position a8 = new Position(7, 0);
-    Position b1 = new Position(0, 0);
+    Position b1 = new Position(0, 1);
     Position b2 = new Position(1, 1);
     Position b3 = new Position(2, 1);
     Position b4 = new Position(3, 1);
@@ -80,22 +83,22 @@ public class Game {
         g1, g2, g3, g4, g5, g6, g7, g8,
         h1, h2, h3, h4, h5, h6, h7, h8};
 
-    Pawn pw1 = new Pawn(true, a2,false);
-    Pawn pw2 = new Pawn(true, b2,false);
-    Pawn pw3 = new Pawn(true, c2,false);
-    Pawn pw4 = new Pawn(true, d2,false);
-    Pawn pw5 = new Pawn(true, e2,false);
-    Pawn pw6 = new Pawn(true, f2,false);
-    Pawn pw7 = new Pawn(true, g2,false);
-    Pawn pw8 = new Pawn(true, h2,false);
-    Pawn pb1 = new Pawn(false, a7,false);
-    Pawn pb2 = new Pawn(false, b7,false);
-    Pawn pb3 = new Pawn(false, c7,false);
-    Pawn pb4 = new Pawn(false, d7,false);
-    Pawn pb5 = new Pawn(false, e7,false);
-    Pawn pb6 = new Pawn(false, f7,false);
-    Pawn pb7 = new Pawn(false, g7,false);
-    Pawn pb8 = new Pawn(false, h7,false);
+    Pawn pw1 = new Pawn(true, a2, false);
+    Pawn pw2 = new Pawn(true, b2, false);
+    Pawn pw3 = new Pawn(true, c2, false);
+    Pawn pw4 = new Pawn(true, d2, false);
+    Pawn pw5 = new Pawn(true, e2, false);
+    Pawn pw6 = new Pawn(true, f2, false);
+    Pawn pw7 = new Pawn(true, g2, false);
+    Pawn pw8 = new Pawn(true, h2, false);
+    Pawn pb1 = new Pawn(false, a7, false);
+    Pawn pb2 = new Pawn(false, b7, false);
+    Pawn pb3 = new Pawn(false, c7, false);
+    Pawn pb4 = new Pawn(false, d7, false);
+    Pawn pb5 = new Pawn(false, e7, false);
+    Pawn pb6 = new Pawn(false, f7, false);
+    Pawn pb7 = new Pawn(false, g7, false);
+    Pawn pb8 = new Pawn(false, h7, false);
     King kw = new King(true, e1);
     King kb = new King(false, e8);
     Queen qw = new Queen(true, d1);
@@ -145,10 +148,7 @@ public class Game {
     board[7][6] = kb2;
     board[7][7] = rb2;
 
-    pw1.move(a5, board);
-
   }
-
 
 
   public static void printBoard() {
@@ -214,9 +214,51 @@ public class Game {
   }
 
 
-  public static void allPossibleMoves() {
+  public static void allPossibleMovesPerPosition(String position, boolean isWhite) {
+    Position pos = null;
+    Piece piece;
+    ArrayList<String> possibleMoves = new ArrayList<>();
 
-    System.out.println(board[1][1].possibleMoves(positions, board));
+    // Find the Position instance for the UCI code given.
+    for (Position p : positions) {
+      if (position.equals(p.getUci())) {
+        pos = p;
+      }
+    }
+    // Find the Piece instance for the UCI code given.
+    if (pos == null) {
+      System.out.println("There's no such position, please try again");
+    } else {
+      piece = board[pos.getRow()][pos.getCol()];
+        if (piece == null) {
+          System.out.println("There's no piece in such position, please try again");
+        } else {
+
+          for (Position p : positions) {
+            if (piece.isValidMove(p, board)) {
+
+              if (piece.isWhite() != isWhite) {
+                System.out.println("You can't move the piece of this color.");
+                break;
+
+              } else {
+                //check whether newPosition is null or with a piece with a different color
+                if (board[p.getRow()][p.getCol()] == null ||
+                    board[p.getRow()][p.getCol()].isWhite() != piece.isWhite()) {
+                  possibleMoves.add(p.getUci());
+                }
+              }
+            }
+          }
+          System.out.println(possibleMoves);
+        }
+    }
+  }
+
+
+  public static void allPossibleMovesPerPlayer() {
+    System.out.println("All possible moves per Position");
+
   }
 
   static void gameStarter() {

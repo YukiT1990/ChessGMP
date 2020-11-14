@@ -24,7 +24,7 @@ public class GameController {
   }
 
   protected static void moves() {
-    Game.allPossibleMoves();
+    Game.allPossibleMovesPerPlayer();
   }
 
 }

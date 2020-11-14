@@ -48,7 +48,7 @@ public abstract class Piece {
   public ArrayList<String> possibleMoves(Position[] positions, Piece[][] board) {
     ArrayList<String> possibleMoves =  new ArrayList<>();
     for (Position p : positions) {
-      if (isValidMove(p, board)) {
+      if (this.isValidMove(p, board)) {
         possibleMoves.add(p.getUci());
       }
     }
@@ -84,8 +84,6 @@ public abstract class Piece {
   }
 
   public boolean isValidMove(Position newPosition, Piece[][] board){
-
-    boolean flag = false;
 
     // check whether newPosition is within board's limit
     if(newPosition.getRow() < 0 && newPosition.getCol() < 0

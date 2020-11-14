@@ -39,7 +39,7 @@ public class Driver {
 
         default:
           if (userOptionInput.length() == 2) {
-            Game.allPossibleMoves();
+            Game.allPossibleMovesPerPosition(userOptionInput, isWhite);
 
             break;
           }
@@ -48,15 +48,14 @@ public class Driver {
             boolean m = Game.move(userOptionInput, isWhite);
             if (m) {
               isWhite = !isWhite;
+              Game.printBoard();
             } else {
-              System.out.println("Invalid input!");
+              System.out.println("Invalid input, please try again");
             }
-            Game.printBoard();
             break;
           }
 
-          System.out.println("\nInvalid input.\n");
-          Game.printBoard();
+          System.out.println("\nInvalid input, please try again.\n");
           break;
 
       }
