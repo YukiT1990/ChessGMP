@@ -34,7 +34,7 @@ public class Driver {
 
         case ("moves"):
 
-          GameController.moves();
+          GameController.moves(isWhite);
           break;
 
         default:

@@ -23,8 +23,8 @@ public class GameController {
     System.exit(0);
   }
 
-  protected static void moves() {
-    Game.allPossibleMovesPerPlayer();
+  protected static void moves(boolean isWhite) {
+    Game.allPossibleMovesPerPlayer(isWhite);
   }
 
 }

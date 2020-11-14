@@ -256,9 +256,17 @@ public class Game {
   }
 
 
-  public static void allPossibleMovesPerPlayer() {
-    System.out.println("All possible moves per Position");
+  public static void allPossibleMovesPerPlayer(boolean isWhite) {
 
+    for (int i = 7; i >= 0; i--) {
+      for (int j = 0; j < 8; j++) {
+        if (board[i][j] != null && board[i][j].isWhite() == isWhite) {
+          System.out.print(board[i][j].toString());
+          System.out.printf("[" + board[i][j].position.getUci() + "] -> ");
+          allPossibleMovesPerPosition(board[i][j].position.getUci(), isWhite);
+        }
+      }
+    }
   }
 
   static void gameStarter() {
