@@ -104,11 +104,9 @@ public abstract class Piece {
   }
 
   public boolean isKingInCheck(Piece[][] board, King k) {
-    ArrayList<Piece> attackArea = new ArrayList<Piece>();
     for(int i = 0; i < board.length; i++) {
       for(int j = 0; j < board[i].length; j++) {
         if(isValidMove(board[i][j].position, board)) {
-          attackArea.add(board[i][j]);
           if(board[i][j].getValue() == 1000 && board[i][j].isWhite() != this.isWhite()) {
             return true;
           }
