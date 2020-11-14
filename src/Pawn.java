@@ -10,7 +10,7 @@ public class Pawn extends Piece {
   }
 
   @Override
-  void move(Position newPosition, Piece[][] board) {
+  boolean move(Position newPosition, Piece[][] board) {
     int newColumn = newPosition.getCol();
     int newRow = newPosition.getRow();
     int column = this.position.getCol();
@@ -20,9 +20,11 @@ public class Pawn extends Piece {
       board[row][column] = null;
       this.position = newPosition;
       board[newRow][newColumn] = this;
+      return true;
     } else {
       System.out.println("Invalid move!");
       System.out.println("Forward 1");
+      return false;
     }
   }
 

@@ -43,7 +43,7 @@ public abstract class Piece {
     this.position = position;
   }
 
-  abstract void move(Position newPosition, Piece[][] board);
+  abstract boolean move(Position newPosition, Piece[][] board);
 
   public ArrayList<String> possibleMoves(Position[] positions, Piece[][] board) {
     ArrayList<String> possibleMoves =  new ArrayList<>();
@@ -85,23 +85,16 @@ public abstract class Piece {
 
   public boolean isValidMove(Position newPosition, Piece[][] board){
 
-    if(newPosition.getRow() >= 0 && newPosition.getCol() >= 0
-        && newPosition.getRow() < 8 && newPosition.getCol() < 8){
-      return true;
-//      // check whether newPosition is null
-//      if(board[newPosition.getRow()][newPosition.getCol()] == null){
-//        return true;
-//      }
-//      // check whether there is a piece of the same colour at the new position
-//      if(board[newPosition.getRow()][newPosition.getCol()].isWhite() != this.isWhite()){
-//        return true;
-//      }else{
-//        return false;
-//      }
-    }else{
+    boolean flag = false;
+
+    // check whether newPosition is within board's limit
+    if(newPosition.getRow() < 0 && newPosition.getCol() < 0
+        && newPosition.getRow() >= 8 && newPosition.getCol() >= 8) {
       return false;
     }
+    return true;
   }
+
 
   public boolean isKingInCheck(Piece[][] board, King k) {
     for(int i = 0; i < board.length; i++) {

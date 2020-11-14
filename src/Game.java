@@ -172,26 +172,45 @@ public class Game {
 
   }
 
-  public static void move(String move) {
+  public static boolean move(String move, boolean isWhite) {
+    boolean flag = false;
+    Piece piece = null;
     Position newPosition = null;
+
+    // Finds the Position instance for the UCI code given.
     for (Position p : positions) {
       if (move.substring(2, 4).equals(p.getUci())) {
         newPosition = p;
       }
     }
-    if (newPosition != null) {
 
+    // Finds the Piece instance for the UCI code given.
+    if (newPosition != null) {
       for (int i = 7; i >= 0; i--) {
         for (int j = 0; j < 8; j++) {
           if (board[i][j] != null) {
             if (board[i][j].getPosition().getUci().equals(move.substring(0, 2))) {
-              board[i][j].move(newPosition, board);
+              piece = board[i][j];
             }
           }
         }
       }
-
     }
+
+    // Checks if attempt to move the piece is in the correct color.
+    if (piece != null) {
+      if (piece.isWhite() != isWhite) {
+        return false;
+      } else {
+        //check whether newPosition is null or with a piece with a different color
+        if (board[newPosition.getRow()][newPosition.getCol()] == null ||
+            (board[newPosition.getRow()][newPosition.getCol()].isWhite() != piece.isWhite())) {
+          flag = piece.move(newPosition, board);
+        }
+      }
+    }
+    // Returns true if the move was successfully completed.
+    return flag;
   }
 
 

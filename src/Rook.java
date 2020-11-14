@@ -9,7 +9,7 @@ public class Rook extends Piece {
   }
 
   @Override
-  void move(Position newPosition, Piece[][] board) {
+  boolean move(Position newPosition, Piece[][] board) {
     int newColumn = newPosition.getCol();
     int newRow = newPosition.getRow();
     int column = this.position.getCol();
@@ -19,9 +19,11 @@ public class Rook extends Piece {
       board[row][column] = null;
       this.position = newPosition;
       board[newRow][newColumn] = this;
+      return true;
     } else {
       System.out.println("Invalid move!");
       System.out.println("Horizontally or vertically");
+      return false;
     }
   }
 

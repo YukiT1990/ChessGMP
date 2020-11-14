@@ -45,13 +45,18 @@ public class Driver {
           }
 
           if (userOptionInput.length() == 4) {
-            Game.move(userOptionInput);
-            isWhite = !isWhite;
+            boolean m = Game.move(userOptionInput, isWhite);
+            if (m) {
+              isWhite = !isWhite;
+            } else {
+              System.out.println("Invalid input!");
+            }
             Game.printBoard();
             break;
           }
 
           System.out.println("\nInvalid input.\n");
+          Game.printBoard();
           break;
 
       }
