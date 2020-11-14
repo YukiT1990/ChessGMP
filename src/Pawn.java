@@ -13,8 +13,8 @@ public class Pawn extends Piece {
   void move(Position newPosition, Piece[][] board) {
     int newColumn = newPosition.getCol();
     int newRow = newPosition.getRow();
-    int column = position.getCol();
-    int row = position.getRow();
+    int column = this.position.getCol();
+    int row = this.position.getRow();
 
     if (isValidMove(newPosition, board)) {
       board[row][column] = null;
@@ -22,6 +22,7 @@ public class Pawn extends Piece {
       board[newRow][newColumn] = this;
     } else {
       System.out.println("Invalid move!");
+      System.out.println("Forward 1");
     }
   }
 

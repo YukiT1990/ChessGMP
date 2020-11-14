@@ -87,19 +87,35 @@ public abstract class Piece {
 
     if(newPosition.getRow() >= 0 && newPosition.getCol() >= 0
         && newPosition.getRow() < 8 && newPosition.getCol() < 8){
-      // check whether newPosition is null
-      if(board[newPosition.getRow()][newPosition.getCol()] == null){
-        return true;
-      }
-      // check whether there is a piece of the same colour at the new position
-      if(board[newPosition.getRow()][newPosition.getCol()].isWhite == this.isWhite){
-        return false;
-      }else{
-        return true;
-      }
+      return true;
+//      // check whether newPosition is null
+//      if(board[newPosition.getRow()][newPosition.getCol()] == null){
+//        return true;
+//      }
+//      // check whether there is a piece of the same colour at the new position
+//      if(board[newPosition.getRow()][newPosition.getCol()].isWhite() != this.isWhite()){
+//        return true;
+//      }else{
+//        return false;
+//      }
     }else{
       return false;
     }
+  }
+
+  public boolean isKingInCheck(Piece[][] board, King k) {
+    ArrayList<Piece> attackArea = new ArrayList<Piece>();
+    for(int i = 0; i < board.length; i++) {
+      for(int j = 0; j < board[i].length; j++) {
+        if(isValidMove(board[i][j].position, board)) {
+          attackArea.add(board[i][j]);
+          if(board[i][j].getValue() == 1000 && board[i][j].isWhite() != this.isWhite()) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 
 }

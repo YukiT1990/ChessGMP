@@ -96,10 +96,10 @@ public class Game {
     Pawn pb6 = new Pawn(false, f7,false);
     Pawn pb7 = new Pawn(false, g7,false);
     Pawn pb8 = new Pawn(false, h7,false);
-    King kw = new King(true, d1);
-    King kb = new King(false, d8);
-    Queen qw = new Queen(true, e1);
-    Queen qb = new Queen(false, e8);
+    King kw = new King(true, e1);
+    King kb = new King(false, e8);
+    Queen qw = new Queen(true, d1);
+    Queen qb = new Queen(false, d8);
     Rook rw1 = new Rook(true, a1);
     Rook rw2 = new Rook(true, h1);
     Rook rb1 = new Rook(false, a8);
@@ -107,7 +107,7 @@ public class Game {
     Bishop bw1 = new Bishop(true, c1);
     Bishop bw2 = new Bishop(true, f1);
     Bishop bb1 = new Bishop(false, c8);
-    Bishop bb2 = new Bishop(false, c8);
+    Bishop bb2 = new Bishop(false, f8);
     Knight kw1 = new Knight(true, b1);
     Knight kw2 = new Knight(true, g1);
     Knight kb1 = new Knight(false, b8);
@@ -180,6 +180,7 @@ public class Game {
       }
     }
     if (newPosition != null) {
+
       for (int i = 7; i >= 0; i--) {
         for (int j = 0; j < 8; j++) {
           if (board[i][j] != null) {
@@ -189,8 +190,8 @@ public class Game {
           }
         }
       }
-    }
 
+    }
   }
 
 
