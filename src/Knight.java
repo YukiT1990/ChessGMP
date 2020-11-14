@@ -10,15 +10,16 @@ public class Knight extends Piece {
   void move(Position newPosition, Piece[][] board) {
     int newColumn = newPosition.getCol();
     int newRow = newPosition.getRow();
-    int column = position.getCol();
-    int row = position.getRow();
+    int column = this.position.getCol();
+    int row = this.position.getRow();
 
-    if (isValidMove(newPosition, board)) {
+    if (this.isValidMove(newPosition, board)) {
       board[row][column] = null;
       this.position = newPosition;
       board[newRow][newColumn] = this;
     } else {
       System.out.println("Invalid move!");
+      System.out.println("Like an L");
     }
   }
 

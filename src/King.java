@@ -8,7 +8,19 @@ public class King extends Piece {
 
   @Override
   void move(Position newPosition, Piece[][] board) {
-    System.out.println("One square");
+    int newColumn = newPosition.getCol();
+    int newRow = newPosition.getRow();
+    int column = this.position.getCol();
+    int row = this.position.getRow();
+
+    if (this.isValidMove(newPosition, board)) {
+      board[row][column] = null;
+      this.position = newPosition;
+      board[newRow][newColumn] = this;
+    } else {
+      System.out.println("Invalid move!");
+      System.out.println("One square");
+    }
   }
 
   @Override

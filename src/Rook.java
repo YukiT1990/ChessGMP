@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Rook extends Piece {
 
   private static final int VALUE = 5;
@@ -8,7 +10,19 @@ public class Rook extends Piece {
 
   @Override
   void move(Position newPosition, Piece[][] board) {
-    System.out.println("Horizontally or vertically");
+    int newColumn = newPosition.getCol();
+    int newRow = newPosition.getRow();
+    int column = this.position.getCol();
+    int row = this.position.getRow();
+
+    if (this.isValidMove(newPosition, board)) {
+      board[row][column] = null;
+      this.position = newPosition;
+      board[newRow][newColumn] = this;
+    } else {
+      System.out.println("Invalid move!");
+      System.out.println("Horizontally or vertically");
+    }
   }
 
   @Override
@@ -25,10 +39,12 @@ public class Rook extends Piece {
     /**
      * Yuki added here
      */
+
     // First call the parent's method to check for the board bounds
     if(!super.isValidMove(position, board)){
       return false;
     }
+
     // If we passed the first test then check for the specific rook movement
     if(newPosition.getCol() == this.position.getCol()) {
       int minOfRow = 0;
@@ -65,5 +81,6 @@ public class Rook extends Piece {
     }else{
       return false;
     }
+
   }
 }
