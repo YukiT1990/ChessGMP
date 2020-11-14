@@ -42,69 +42,48 @@ public class Pawn extends Piece {
 
     final int PAWN_MOVE_1 = 1;
     final int PAWN_MOVE_2 = 2;
+
     int newColumn = newPosition.getCol();
     int newRow = newPosition.getRow();
-    int column = position.getCol();
-    int row = position.getRow();
-    boolean isFirstRowWhite = (row == 1);
-    boolean isFirstRowBlack = (row == 6);
-    boolean isValidWhitePawnAnyMove = (newRow == row + PAWN_MOVE_1 &&
-        board[newRow][newColumn] == null);
-    boolean isValidWhitePawnFirstMove = ((newRow == row + PAWN_MOVE_2 ||
-        newRow == row + PAWN_MOVE_1) & board[newRow][newColumn] == null);
-    boolean isValidWhitePawnMoveCapturing = (newRow == row + PAWN_MOVE_1 &&
-        newColumn == column + PAWN_MOVE_1) || (newRow == row + PAWN_MOVE_1 &&
-        newColumn == column - PAWN_MOVE_1);
-    boolean isValidBlackPawnAnyMove = (newRow == row - PAWN_MOVE_1 &&
-        board[newRow][newColumn] == null);
-    boolean isValidBlackPawnFirstMove = ((newRow == row - PAWN_MOVE_2 ||
-        newRow == row - PAWN_MOVE_1) && board[newRow][newColumn] == null);
+    int column = this.position.getCol();
+    int row = this.position.getRow();
+    Piece p = board[newRow][newColumn];
 
-    boolean isValidBlackPawnMoveCapturing = (newRow == row - PAWN_MOVE_1 &&
-        newColumn == column + PAWN_MOVE_1) ||
-        (newRow == row - PAWN_MOVE_1 && newColumn == column - PAWN_MOVE_1);
-
-    if (!super.isValidMove(newPosition, board)) {
-      return false;
+    if (p != null) {
+      if (p.isWhite() == this.isWhite()) {
+        return false;
+      }
     }
 
-    if (this.isWhite()) {
+    if (p == null) {
+      if (this.isWhite()) {
+        if (column == newColumn && ((newRow == row + PAWN_MOVE_1) ||
+            (row == 1 && newRow == row + PAWN_MOVE_2))) {
+          return true;
+        }
 
-      if (isFirstRowWhite) {
-        if (isValidWhitePawnFirstMove) {
-          if (board[newRow][newColumn] != null) {
-            if (!board[newRow][newColumn].isWhite() && isValidWhitePawnMoveCapturing) {
-              return true;
-            }
-          }
-          return true;
-        }
-      } else if (isValidWhitePawnAnyMove || isValidWhitePawnMoveCapturing) {
-        if (board[newRow][newColumn] != null) {
-          if (!board[newRow][newColumn].isWhite()) {
-            return true;
-          }
-        }
-          return true;
-        }
-      } else if (isFirstRowBlack) {
-      if (isValidBlackPawnFirstMove) {
-        if (board[newRow][newColumn] != null) {
-          if (board[newRow][newColumn].isWhite() && isValidBlackPawnMoveCapturing) {
-            return true;
-          }
-        }
-        return true;
-      }
-    } else if (isValidBlackPawnAnyMove || isValidBlackPawnMoveCapturing) {
-      if (board[newRow][newColumn] != null) {
-        if (board[newRow][newColumn].isWhite()) {
+      } else {
+        if (column == newColumn && ((newRow == row - PAWN_MOVE_1) ||
+            (row == 6 && newRow == row - PAWN_MOVE_2))) {
           return true;
         }
       }
-      return true;
-    }
+    } else {
 
+      boolean b = (newColumn == column + PAWN_MOVE_1) || (newColumn == column - PAWN_MOVE_1);
+
+      if (this.isWhite()) {
+        if (newRow == row + PAWN_MOVE_1 && b) {
+          return true;
+        }
+
+      } else {
+        if (newRow == row - PAWN_MOVE_1 && b) {
+          return true;
+        }
+      }
+
+    }
     return false;
   }
 
