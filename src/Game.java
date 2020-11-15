@@ -148,6 +148,8 @@ public class Game {
     board[7][6] = kb2;
     board[7][7] = rb2;
 
+
+
   }
 
 
@@ -199,6 +201,9 @@ public class Game {
 
     // Checks if attempt to move the piece is in the correct color.
     if (piece != null) {
+
+
+
       if (piece.isWhite() != isWhite) {
         return false;
       } else {
@@ -209,6 +214,7 @@ public class Game {
         }
       }
     }
+
     // Returns true if the move was successfully completed.
     return flag;
   }
@@ -269,10 +275,9 @@ public class Game {
     }
   }
 
-  public static boolean isKingInCheck(boolean isWhite) {
+  public static boolean isKingInCheck(boolean isWhite, ArrayList<String> moves) {
 
     Piece king = null;
-    Piece piece = null;
 
     for (int i = 7; i >= 0; i--) {
       for (int j = 0; j < 8; j++) {
@@ -284,40 +289,25 @@ public class Game {
       }
     }
 
+    return moves.contains(king.position.getUci());
+
+  }
+
+  public static boolean isCheckmate(boolean isWhite, ArrayList<String> moves) {
+
+    Piece king = null;
+
     for (int i = 7; i >= 0; i--) {
       for (int j = 0; j < 8; j++) {
-        if (board[i][j] != null && king != null) {
-          piece = board[i][j];
-          if (piece.isWhite() != king.isWhite() && piece.isValidMove(king.position, board)) {
-            return true;
+        if (board[i][j] != null) {
+          if (board[i][j].getValue() == 1000 && board[i][j].isWhite() != isWhite) {
+            king = board[i][j];
           }
         }
       }
     }
-    return false;
 
-  }
-
-  public static boolean isCheckMate(boolean isWhite) {
-    Piece piece;
-    ArrayList<String> possibleMoves = new ArrayList<>();
-
-    for (Position p : positions) {
-      if (p != null) {
-        piece = board[p.getRow()][p.getCol()];
-        if (piece != null) {
-          for (Position np : positions) {
-            if (piece.isValidMove(np, board)) {
-                  possibleMoves.add(np.getUci());
-                }
-              }
-            }
-          }
-        }
-    if (possibleMoves.size() < 1) {
-      return true;
-    }
-    return false;
+    return (king == null);
   }
 
 
@@ -325,5 +315,31 @@ public class Game {
 
     Game game = new Game();
   }
+
+  public static ArrayList<String> allMoves(boolean isWhite) {
+
+    Piece piece;
+    ArrayList<String> moves = new ArrayList<>();
+
+    for (Position p : positions) {
+      if (p != null) {
+        piece = board[p.getRow()][p.getCol()];
+        if (piece != null) {
+          for (Position np : positions) {
+            if (piece.isValidMove(np, board)) {
+              if (piece.isWhite() == isWhite) {
+                if (board[np.getRow()][np.getCol()] == null ||
+                    board[np.getRow()][np.getCol()].isWhite() != piece.isWhite()) {
+                  moves.add(np.getUci());
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return moves;
+  }
+
 
 }

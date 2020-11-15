@@ -76,7 +76,7 @@ public class King extends Piece {
       }
 
       // condition 3
-      if(Game.isKingInCheck(true) == true){
+      if(Game.isKingInCheck(true, Game.allMoves(this.isWhite())) == true){
         return false;
       }
 
@@ -125,7 +125,7 @@ public class King extends Piece {
       }
 
       // condition 3
-      if(Game.isKingInCheck(false) == true){
+      if(Game.isKingInCheck(false, Game.allMoves(this.isWhite())) == true){
         return false;
       }
 

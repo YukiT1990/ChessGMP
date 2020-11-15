@@ -14,15 +14,6 @@ public class Driver {
     Game.printBoard();
     while (true) {
 
-      if (Game.isCheckMate(isWhite)) {
-        if (isWhite) {
-          System.out.println("Check Mate! White Won!");
-        } else {
-          System.out.println("Check Mate! Black Won!");
-        }
-        System.exit(0);
-      }
-
       if (isWhite) {
         System.out.println("White to move");
       } else {
@@ -62,6 +53,14 @@ public class Driver {
           if (userOptionInput.length() == 4) {
             boolean m = Game.move(userOptionInput, isWhite);
             if (m) {
+              if (Game.isCheckmate(isWhite, Game.allMoves(isWhite))) {
+                if (isWhite) {
+                  System.out.println("Checkmate! White Won!");
+                } else {
+                  System.out.println("Checkmate! Black Won!");
+                }
+                System.exit(0);
+              }
               isWhite = !isWhite;
               Game.printBoard();
             } else {
