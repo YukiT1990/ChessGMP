@@ -7,6 +7,14 @@ public class Driver {
     Game.printBoard();
     while (true) {
 
+      if (Game.isCheckMate(isWhite)) {
+        if (isWhite) {
+          System.out.println("Check Mate! White Won!");
+        } else {
+          System.out.println("Check Mate! Black Won!");
+        }
+        System.exit(0);
+      }
 
       if (isWhite) {
         System.out.println("White to move");

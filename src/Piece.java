@@ -90,21 +90,10 @@ public abstract class Piece {
         && newPosition.getRow() >= 8 && newPosition.getCol() >= 8) {
       return false;
     }
+
     return true;
   }
 
 
-  public boolean isKingInCheck(Piece[][] board, King k) {
-    for(int i = 0; i < board.length; i++) {
-      for(int j = 0; j < board[i].length; j++) {
-        if(isValidMove(board[i][j].position, board)) {
-          if(board[i][j].getValue() == 1000 && board[i][j].isWhite() != this.isWhite()) {
-            return true;
-          }
-        }
-      }
-    }
-    return false;
-  }
 
 }
