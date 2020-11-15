@@ -68,24 +68,24 @@ public class Queen extends Piece {
         return true;
       }else if(newPosition.getRow() > this.position.getRow() && newPosition.getCol() <= this.position.getCol()){
         int r = this.position.getRow() + 1;
-        int c = newPosition.getCol() + 1;
+        int c = this.position.getCol() - 1;
         while(positionsBetween > 0) {
           if(board[r][c] != null) {
             return false;
           }
           r += 1;
-          c += 1;
+          c -= 1;
           positionsBetween -= 1;
         }
         return true;
       }else if(newPosition.getRow() <= this.position.getRow() && newPosition.getCol() > this.position.getCol()){
-        int r = newPosition.getRow() + 1;
+        int r = this.position.getRow() - 1;
         int c = this.position.getCol() + 1;
         while(positionsBetween > 0) {
           if(board[r][c] != null) {
             return false;
           }
-          r += 1;
+          r -= 1;
           c += 1;
           positionsBetween -= 1;
         }
