@@ -4,6 +4,13 @@ public class Driver {
     Game.gameStarter();
     boolean isWhite = true;
 
+    boolean hasKwMoved = false; //e1
+    boolean hasKbMoved = false; //e8
+    boolean hasRw1Moved = false; //a1
+    boolean hasRw2Moved = false; //h1
+    boolean hasRb1Moved = false; //a8
+    boolean hasRb2Moved = false; //h8
+
     Game.printBoard();
     while (true) {
 
