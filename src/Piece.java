@@ -94,6 +94,24 @@ public abstract class Piece {
     return true;
   }
 
+  /**
+   * Yuki added here
+   * @param board
+   * @return
+   */
+
+  public boolean isUnderAttack(Piece[][] board){
+    for (int i = 7; i >= 0; i--) {
+      for (int j = 0; j < 8; j++) {
+        if(board[i][j].isWhite() != this.isWhite()){
+          if(board[i][j].isValidMove(this.position, board) == true){
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
 
 
 }
