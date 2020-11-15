@@ -3,10 +3,55 @@ public class Pawn extends Piece {
 
   private boolean promoted;
   private static final int VALUE = 1;
+  private Piece promotedPiece;
 
   public Pawn(boolean isWhite, Position position, boolean promoted) {
     super(VALUE, isWhite, position);
     this.promoted = promoted;
+    this.promotedPiece = null;
+  }
+
+  public void promotion() {
+
+    boolean flag = true;
+
+    while (flag) {
+        String userOptionInput = InputCollector.getUserInput("Which piece do you want to promote to? \n"
+            + "'Q' -> Queen \n"
+            + "'R' -> Rook \n"
+            + "'B' -> Bishop\n"
+            + "'K' -> Knight");
+
+        switch (userOptionInput) {
+          case ("Q"):
+            this.promotedPiece =  new Queen(this.isWhite(), this.position);
+            flag = false;
+            break;
+
+          case ("R"):
+            this.promotedPiece =  new Rook(this.isWhite(), this.position);
+            flag = false;
+            break;
+
+          case ("B"):
+            this.promotedPiece =  new Bishop(this.isWhite(), this.position);
+            flag = false;
+            break;
+
+          case ("K"):
+            this.promotedPiece =  new Knight(this.isWhite(), this.position);
+            flag = false;
+            break;
+
+          default:
+            System.out.println("Invalid input");
+
+      }
+    }
+  }
+
+  public Piece getPromotedPiece() {
+    return promotedPiece;
   }
 
   @Override

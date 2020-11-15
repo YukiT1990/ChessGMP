@@ -53,6 +53,9 @@ public class Driver {
           if (userOptionInput.length() == 4) {
             boolean m = Game.move(userOptionInput, isWhite);
             if (m) {
+
+              Game.checkPromotion();
+
               if (Game.isCheckmate(isWhite, Game.allMoves(isWhite))) {
                 if (isWhite) {
                   System.out.println("Checkmate! White Won!");

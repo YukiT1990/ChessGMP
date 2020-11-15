@@ -341,5 +341,35 @@ public class Game {
     return moves;
   }
 
+  public static void checkPromotion() {
+
+    Pawn pawn;
+
+    for (int col = 0; col < 8; col++) {
+      if (board[0][col] != null) {
+        if (board[0][col].toString().equals("♟")) {
+
+
+          pawn = (Pawn) board[0][col];
+          pawn.promotion();
+          board[0][col] = pawn.getPromotedPiece();
+
+        }
+      }
+    }
+
+    for (int col = 0; col < 8; col++) {
+      if (board[7][col] != null) {
+        if (board[7][col].toString().equals("♙")) {
+
+          pawn = (Pawn) board[7][col];
+          pawn.promotion();
+          board[7][col] = pawn.getPromotedPiece();
+        }
+      }
+    }
+
+  }
+
 
 }
