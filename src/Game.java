@@ -221,6 +221,7 @@ public class Game {
     Position pos = null;
     Piece piece;
     ArrayList<String> possibleMoves = new ArrayList<>();
+    King king;
 
     // Find the Position instance for the UCI code given.
     for (Position p : positions) {
@@ -238,6 +239,15 @@ public class Game {
         } else {
 
           for (Position p : positions) {
+
+            // adds castling option to the moves
+            if (board[pos.getRow()][pos.getCol()].getValue() == 1000) {
+              king = (King) board[pos.getRow()][pos.getCol()];
+              if (king.canCastling(p, board)) {
+                possibleMoves.add(p.getUci());
+              }
+            }
+
             if (piece.isValidMove(p, board)) {
 
               if (piece.isWhite() != isWhite) {
@@ -331,14 +341,6 @@ public class Game {
                 }
               }
             }
-//            else if(piece.getValue() == 1000) {
-//              if((np.getRow() == 0 && np.getCol() == 1) || (np.getRow() == 0 && np.getCol() == 6)
-//                      || (np.getRow() == 7 && np.getCol() == 1) || (np.getRow() == 7 && np.getCol() == 6)) {
-//                if (King.canCastling(np, board) == true) {
-//                  moves.add(np.getUci());
-//                }
-//              }
-//            }
           }
         }
       }
