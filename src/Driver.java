@@ -1,15 +1,14 @@
 public class Driver {
+  public static boolean hasKwMoved = false; //e1
+  public static boolean hasKbMoved = false; //e8
+  public static boolean hasRw1Moved = false; //a1
+  public static boolean hasRw2Moved = false; //h1
+  public static boolean hasRb1Moved = false; //a8
+  public static boolean hasRb2Moved = false; //h8
 
   public static void main(String[] args) {
     Game.gameStarter();
     boolean isWhite = true;
-
-    boolean hasKwMoved = false; //e1
-    boolean hasKbMoved = false; //e8
-    boolean hasRw1Moved = false; //a1
-    boolean hasRw2Moved = false; //h1
-    boolean hasRb1Moved = false; //a8
-    boolean hasRb2Moved = false; //h8
 
     Game.printBoard();
     while (true) {
@@ -56,6 +55,46 @@ public class Driver {
 
               Game.checkPromotion();
 
+
+              /**
+               * below 6 conditional statements check whether the king and the rook have moved since the start of the game
+               */
+              if(hasKwMoved == false) {
+                if(Game.hasKwMovedFromOriginalPosition() == true) {
+                  hasKwMoved = true;
+                }
+              }
+
+              if(hasKbMoved == false) {
+                if(Game.hasKbMovedFromOriginalPosition() == true) {
+                  hasKbMoved = true;
+                }
+              }
+
+              if(hasRw1Moved == false) {
+                if(Game.hasRw1MovedFromOriginalPosition() == true) {
+                  hasRw1Moved = true;
+                }
+              }
+
+              if(hasRw2Moved == false) {
+                if(Game.hasRw2MovedFromOriginalPosition() == true) {
+                  hasRw2Moved = true;
+                }
+              }
+
+              if(hasRb1Moved == false) {
+                if(Game.hasRb1MovedFromOriginalPosition() == true) {
+                  hasRb1Moved = true;
+                }
+              }
+
+              if(hasRb2Moved == false) {
+                if(Game.hasRb2MovedFromOriginalPosition() == true) {
+                  hasRb2Moved = true;
+                }
+              }
+
               if (Game.isCheckmate(isWhite, Game.allMoves(isWhite))) {
                 if (isWhite) {
                   System.out.println("Checkmate! White Won!");
@@ -77,7 +116,5 @@ public class Driver {
 
       }
     }
-
   }
-
 }
