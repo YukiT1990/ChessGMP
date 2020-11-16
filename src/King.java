@@ -13,7 +13,15 @@ public class King extends Piece {
     int column = this.position.getCol();
     int row = this.position.getRow();
 
-    if (this.isValidMove(newPosition, board)) {
+    if((newPosition.getRow() == 0 && newPosition.getCol() == 1) || (newPosition.getRow() == 0 && newPosition.getCol() == 6)
+            || (newPosition.getRow() == 7 && newPosition.getCol() == 1) || (newPosition.getRow() == 7 && newPosition.getCol() == 6)){
+      if(canCastling(newPosition, board) == true){
+        kingEntersCastle(newPosition, board);
+        return true;
+      } else {
+        return false;
+      }
+    }else if (this.isValidMove(newPosition, board)) {
       board[row][column] = null;
       this.position = newPosition;
       board[newRow][newColumn] = this;
@@ -23,6 +31,7 @@ public class King extends Piece {
       System.out.println("One square");
       return false;
     }
+
   }
 
   @Override
@@ -48,9 +57,18 @@ public class King extends Piece {
     // so don't need to check whether there are other pieces in the way
     if((Math.abs(newPosition.getCol() - this.position.getCol()) <= 1) && (Math.abs(newPosition.getRow() - this.position.getRow()) <= 1)){
       return true;
-    }else{
-      return false;
     }
+
+//    if((newPosition.getRow() == 0 && newPosition.getCol() == 1) || (newPosition.getRow() == 0 && newPosition.getCol() == 6)
+//            || (newPosition.getRow() == 7 && newPosition.getCol() == 1) || (newPosition.getRow() == 7 && newPosition.getCol() == 6)){
+//      if(canCastling(newPosition, board) == true){
+//        return true;
+//      } else {
+//        return false;
+//      }
+//    }
+
+    return false;
   }
 
   /**
@@ -65,8 +83,8 @@ public class King extends Piece {
    */
 
   // condition 2 hasn't written yet
-  public boolean canCastling(boolean isWhite, Position newPosition, Piece[][] board) {
-    if (isWhite) {
+  public boolean canCastling(Position newPosition, Piece[][] board) {
+    if (this.isWhite() == true) {
       // the king is white
       // king(e1), rook(a1, h1)
 
@@ -88,10 +106,14 @@ public class King extends Piece {
           if(board[0][1] != null || board[0][2] != null || board[0][3] != null) {
             return false;
           }
-          // condition 4
-          if(board[0][1].isUnderAttack(board) == true || board[0][2].isUnderAttack(board) == true || board[0][3].isUnderAttack(board) == true) {
+          // condition 4 (need to check which is better)
+//          if(board[0][1].isUnderAttack(board) == true || board[0][2].isUnderAttack(board) == true || board[0][3].isUnderAttack(board) == true) {
+//            return false;
+//          }
+          if(Game.allMoves(this.isWhite()).contains(board[0][1]) || Game.allMoves(this.isWhite()).contains(board[0][2]) || Game.allMoves(this.isWhite()).contains(board[0][3])){
             return false;
           }
+
         }else{
           return false;
         }
@@ -105,7 +127,10 @@ public class King extends Piece {
             return false;
           }
           // condition 4
-          if(board[0][5].isUnderAttack(board) == true || board[0][6].isUnderAttack(board) == true) {
+//          if(board[0][5].isUnderAttack(board) == true || board[0][6].isUnderAttack(board) == true) {
+//            return false;
+//          }
+          if(Game.allMoves(this.isWhite()).contains(board[0][5]) || Game.allMoves(this.isWhite()).contains(board[0][6])){
             return false;
           }
         }else{
@@ -131,14 +156,17 @@ public class King extends Piece {
 
       // rook is a8
       if(newPosition.getRow() == 7 && newPosition.getCol() == 1){
-        if(board[7][4].getValue() == 1000 && board[7][4].isWhite() == true
-                && board[7][0].getValue() == 5 && board[7][0].isWhite() == true){
+        if(board[7][4].getValue() == 1000 && board[7][4].isWhite() == false
+                && board[7][0].getValue() == 5 && board[7][0].isWhite() == false){
           // condition 1
           if(board[7][1] != null || board[7][2] != null || board[7][3] != null) {
             return false;
           }
           // condition 4
-          if(board[7][1].isUnderAttack(board) == true || board[7][2].isUnderAttack(board) == true || board[7][3].isUnderAttack(board) == true) {
+//          if(board[7][1].isUnderAttack(board) == true || board[7][2].isUnderAttack(board) == true || board[7][3].isUnderAttack(board) == true) {
+//            return false;
+//          }
+          if(Game.allMoves(this.isWhite()).contains(board[7][1]) || Game.allMoves(this.isWhite()).contains(board[7][2]) || Game.allMoves(this.isWhite()).contains(board[7][3])){
             return false;
           }
         }else{
@@ -147,14 +175,17 @@ public class King extends Piece {
       }
       // rook is h8
       if(newPosition.getRow() == 7 && newPosition.getCol() == 6){
-        if(board[7][4].getValue() == 1000 && board[7][4].isWhite() == true
-                && board[7][7].getValue() == 5 && board[7][7].isWhite() == true){
+        if(board[7][4].getValue() == 1000 && board[7][4].isWhite() == false
+                && board[7][7].getValue() == 5 && board[7][7].isWhite() == false){
           // condition 1
           if(board[7][5] != null || board[7][6] != null) {
             return false;
           }
           // condition 4
-          if(board[7][5].isUnderAttack(board) == true || board[7][6].isUnderAttack(board) == true) {
+//          if(board[7][5].isUnderAttack(board) == true || board[7][6].isUnderAttack(board) == true) {
+//            return false;
+//          }
+          if(Game.allMoves(this.isWhite()).contains(board[7][5]) || Game.allMoves(this.isWhite()).contains(board[7][6])){
             return false;
           }
         }else{

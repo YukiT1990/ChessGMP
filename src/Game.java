@@ -334,6 +334,14 @@ public class Game {
                 }
               }
             }
+//            else if(piece.getValue() == 1000) {
+//              if((np.getRow() == 0 && np.getCol() == 1) || (np.getRow() == 0 && np.getCol() == 6)
+//                      || (np.getRow() == 7 && np.getCol() == 1) || (np.getRow() == 7 && np.getCol() == 6)) {
+//                if (King.canCastling(np, board) == true) {
+//                  moves.add(np.getUci());
+//                }
+//              }
+//            }
           }
         }
       }
