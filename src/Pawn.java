@@ -11,7 +11,8 @@ public class Pawn extends Piece {
     this.promotedPiece = null;
   }
 
-  public void promotion() {
+
+  protected void promotion() {
 
     boolean flag = true;
 

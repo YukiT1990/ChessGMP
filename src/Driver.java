@@ -42,6 +42,11 @@ public class Driver {
           GameController.moves(isWhite);
           break;
 
+        case ("draw"):
+
+          GameController.draw(isWhite);
+          break;
+
         default:
           if (userOptionInput.length() == 2) {
             Game.allPossibleMovesPerPosition(userOptionInput, isWhite);
