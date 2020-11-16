@@ -107,10 +107,11 @@ public class King extends Piece {
             return false;
           }
           // condition 4
-//          if(board[0][1].isUnderAttack(board) == true || board[0][2].isUnderAttack(board) == true || board[0][3].isUnderAttack(board) == true) {
-//            return false;
-//          }
           if(Game.allMoves(this.isWhite()).contains(board[0][1]) || Game.allMoves(this.isWhite()).contains(board[0][2]) || Game.allMoves(this.isWhite()).contains(board[0][3])){
+            return false;
+          }
+          // condition 2
+          if(Driver.hasKwMoved == true || Driver.hasRw1Moved == true) {
             return false;
           }
 
@@ -127,10 +128,11 @@ public class King extends Piece {
             return false;
           }
           // condition 4
-//          if(board[0][5].isUnderAttack(board) == true || board[0][6].isUnderAttack(board) == true) {
-//            return false;
-//          }
           if(Game.allMoves(this.isWhite()).contains(board[0][5]) || Game.allMoves(this.isWhite()).contains(board[0][6])){
+            return false;
+          }
+          // condition 2
+          if(Driver.hasKwMoved == true || Driver.hasRw2Moved == true) {
             return false;
           }
         }else{
@@ -163,10 +165,11 @@ public class King extends Piece {
             return false;
           }
           // condition 4
-//          if(board[7][1].isUnderAttack(board) == true || board[7][2].isUnderAttack(board) == true || board[7][3].isUnderAttack(board) == true) {
-//            return false;
-//          }
           if(Game.allMoves(this.isWhite()).contains(board[7][1]) || Game.allMoves(this.isWhite()).contains(board[7][2]) || Game.allMoves(this.isWhite()).contains(board[7][3])){
+            return false;
+          }
+          // condition 2
+          if(Driver.hasKbMoved == true || Driver.hasRb1Moved == true) {
             return false;
           }
         }else{
@@ -182,10 +185,11 @@ public class King extends Piece {
             return false;
           }
           // condition 4
-//          if(board[7][5].isUnderAttack(board) == true || board[7][6].isUnderAttack(board) == true) {
-//            return false;
-//          }
           if(Game.allMoves(this.isWhite()).contains(board[7][5]) || Game.allMoves(this.isWhite()).contains(board[7][6])){
+            return false;
+          }
+          // condition 2
+          if(Driver.hasKbMoved == true || Driver.hasRb2Moved == true) {
             return false;
           }
         }else{

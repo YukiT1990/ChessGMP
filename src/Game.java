@@ -379,5 +379,69 @@ public class Game {
 
   }
 
+  /**
+   * below 6 methods check whether the king and the rook have moved since the start of the game
+   */
+
+  public static boolean hasKwMovedFromOriginalPosition() {
+    if(board[0][4] == null) {
+      return true;
+    } else if(board[0][4].getValue() == 1000 && board[0][4].isWhite() == true ){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public static boolean hasKbMovedFromOriginalPosition() {
+    if(board[7][4] == null) {
+      return true;
+    } else if(board[7][4].getValue() == 1000 && board[7][4].isWhite() == false ){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public static boolean hasRw1MovedFromOriginalPosition() {
+    if(board[0][0] == null) {
+      return true;
+    } else if(board[0][0].getValue() == 5 && board[0][0].isWhite() == true ){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public static boolean hasRw2MovedFromOriginalPosition() {
+    if(board[0][7] == null) {
+      return true;
+    } else if(board[0][7].getValue() == 5 && board[0][7].isWhite() == true ){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public static boolean hasRb1MovedFromOriginalPosition() {
+    if(board[7][0] == null) {
+      return true;
+    } else if(board[7][0].getValue() == 5 && board[7][0].isWhite() == false ){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public static boolean hasRb2MovedFromOriginalPosition() {
+    if(board[7][7] == null) {
+      return true;
+    } else if(board[7][7].getValue() == 5 && board[7][7].isWhite() == false ){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 
 }
