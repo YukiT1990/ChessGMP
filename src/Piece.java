@@ -100,17 +100,17 @@ public abstract class Piece {
    * @return
    */
 
-  public boolean isUnderAttack(Piece[][] board){
-    for (int i = 7; i >= 0; i--) {
-      for (int j = 0; j < 8; j++) {
-        if(board[i][j].isWhite() != this.isWhite()){
-          if(board[i][j].isValidMove(this.position, board) == true){
-            return true;
-          }
-        }
-      }
-    }
-    return false;
-  }
+//  public boolean isUnderAttack(Piece[][] board){
+//    for (int i = 7; i >= 0; i--) {
+//      for (int j = 0; j < 8; j++) {
+//        if(board[i][j].isWhite() != this.isWhite()){
+//          if(board[i][j].isValidMove(this.position, board) == true){
+//            return true;
+//          }
+//        }
+//      }
+//    }
+//    return false;
+//  }
 
 }

@@ -106,7 +106,7 @@ public class King extends Piece {
           if(board[0][1] != null || board[0][2] != null || board[0][3] != null) {
             return false;
           }
-          // condition 4 (need to check which is better)
+          // condition 4
 //          if(board[0][1].isUnderAttack(board) == true || board[0][2].isUnderAttack(board) == true || board[0][3].isUnderAttack(board) == true) {
 //            return false;
 //          }
