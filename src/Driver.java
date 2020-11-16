@@ -10,8 +10,6 @@ public class Driver {
     Game.gameStarter();
     boolean isWhite = true;
 
-
-
     Game.printBoard();
     while (true) {
 
@@ -97,9 +95,6 @@ public class Driver {
                 }
               }
 
-
-
-
               if (Game.isCheckmate(isWhite, Game.allMoves(isWhite))) {
                 if (isWhite) {
                   System.out.println("Checkmate! White Won!");
@@ -121,7 +116,5 @@ public class Driver {
 
       }
     }
-
   }
-
 }

@@ -147,9 +147,6 @@ public class Game {
     board[7][5] = bb2;
     board[7][6] = kb2;
     board[7][7] = rb2;
-
-
-
   }
 
 
